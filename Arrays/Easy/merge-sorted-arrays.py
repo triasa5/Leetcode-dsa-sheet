@@ -7,9 +7,9 @@ class Solution:
 # more efficient 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        check1 = m-1
-        check2 = n-1
-        pointer = m+n-1
+        check1 = m-1 # pointer for nums1 array
+        check2 = n-1 # pointer for nums2 array
+        pointer = m+n-1 # pointer for last element of nums1
         while check1>=0 and check2>=0:
             if nums1[check1] <= nums2[check2]:
                 nums1[pointer] = nums2[check2]
@@ -19,8 +19,8 @@ class Solution:
                 check1 -= 1
             pointer -= 1
         
-        if check2>=0:
-            nums1[:check2+1] = nums2[:check2+1]
+        if check2>=0: # if there is elements left in nums2
+            nums1[:check2+1] = nums2[:check2+1] # just copy them as they are already sorted
         return 
         
         
