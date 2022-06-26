@@ -19,3 +19,20 @@ Constraints:
 intervals[i].length == 2
 0 <= start(i) <= end(i) <= 10^4
 **/
+
+// Time complexity: O(nlogn)
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length <= 1)
+			         return intervals;
+		      Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0])); // sorting according to the starting element of the intervals
+        LinkedList<int[]> merged = new LinkedList<>();
+        for (int[] interval : intervals) {
+            if (merged.isEmpty() || merged.getLast()[1] < interval[0])  // if the list is empty or there is no overlap, add to the result
+                merged.add(interval);
+            else 
+                merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);  // if there is overlap, merge them
+        }
+        return merged.toArray(new int[merged.size()][]);
+	   }
+}
