@@ -20,7 +20,29 @@ Constraints:
 nums is sorted in non-decreasing order.
 **/
 
-// Time complexity: O(n) + O(nlogn) = O(nlogn)
+// Time complexity: O(n)
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int i = 0, j = nums.length - 1, idx = nums.length - 1;
+        int[] res = new int[nums.length];
+        while (i <= j) {
+            int isq = nums[i] * nums[i];
+            int jsq = nums[j] * nums[j];
+            if(isq > jsq) {
+                res[idx] = isq;
+                i++;
+            }
+            else {
+                res[idx] = jsq;
+                j--;
+            }
+            idx--;
+        }
+        return res;
+    }
+}
+
+// Time complexity: O(nlogn)
 class Solution {
     public int[] sortedSquares(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
